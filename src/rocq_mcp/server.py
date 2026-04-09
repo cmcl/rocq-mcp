@@ -468,6 +468,7 @@ async def handle_call_tool(
             character = arguments["character"]
 
             abs_path = str(Path(file_path).resolve())
+            ensure_workspace(client, abs_path)
             state = client.get_state_at_pos(abs_path, line, character)
 
             # Get goals at this position
@@ -492,6 +493,7 @@ async def handle_call_tool(
             file_path = arguments["file_path"]
 
             abs_path = str(Path(file_path).resolve())
+            ensure_workspace(client, abs_path)
             toc = client.toc(abs_path)
 
             result = f"Table of contents for {file_path}:\n"
